@@ -1,0 +1,57 @@
+import { Exclude } from 'class-transformer';
+import { IsEmail, Length } from 'class-validator';
+import { BeforeInsert, Column, Entity as TOEntity, Index } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+
+import Entity from './base.entity';
+
+@TOEntity('usuario')
+export default class Usuario extends Entity {
+  constructor(user: Partial<Usuario>) {
+    super();
+    Object.assign(this, user);
+  }
+
+  @Index({ unique: true })
+  @IsEmail(undefined, {
+    message: 'Debe ser una dirección de correo electrónico válida',
+  })
+  @Length(1, 255, { message: 'El correo electrónico está vacío' })
+  @Column()
+  us_correo: string;
+
+  @Index()
+  @Length(3, 255, { message: 'Debe tener al menos 3 caracteres' })
+  @Column()
+  us_nombre: string;
+
+  @Index()
+  @Length(3, 255, { message: 'Debe tener al menos 3 caracteres' })
+  @Column()
+  us_apellido: string;
+
+  @Exclude()
+  @Column()
+  @Length(6, 255, { message: 'Debe tener al menos 6 caracteres' })
+  password: string;
+
+  @Column({ default: '' })
+  avatar: string;
+
+  //   @OneToMany(() => Review, (review) => review.id)
+  //   reviews: Review[];
+
+  //   @OneToMany(() => Post, (post) => post.pstUsuarioId)
+  //   posts: Post[];
+
+  //   @OneToMany(() => Mensaje, (mensaje) => mensaje.msj_user_to)
+  //   messages: Mensaje[];
+
+  // @OneToMany(() => Vote, (vote) => vote.user)
+  // votes: Vote[];
+
+  @BeforeInsert()
+  async hasPassword() {
+    this.password = await bcrypt.hash(this.password, 6);
+  }
+}
