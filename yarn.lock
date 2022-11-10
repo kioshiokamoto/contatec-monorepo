@@ -1871,13 +1871,14 @@
   dependencies:
     uuid "8.3.2"
 
-"@nestjs/websockets@7.6.18":
-  version "7.6.18"
-  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-7.6.18.tgz#504426eb241ce528226a8d3ed308c6793cbe4d6c"
-  integrity sha512-QBp+zVAGMksNKa5HnfpZfXzO8FbDO+vGcGbxuXLPqEeH2/HsS1O09uPvi4uG02WtGWIJ+DewWdq/odsukl4lDg==
+"@nestjs/websockets@^9.2.0":
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/@nestjs/websockets/-/websockets-9.2.0.tgz#cbe8d446eff653d9c63234ef396ccc1ea031e875"
+  integrity sha512-AbG4eN9p9O6QmNSOWsk0lrA+CtHkrdDkogcl1sGyTrg+LRd6IUlkaTu9fFK9Hl6o7bs2ieGgDmxAvl+Xd156Aw==
   dependencies:
     iterare "1.2.1"
-    tslib "2.2.0"
+    object-hash "3.0.0"
+    tslib "2.4.1"
 
 "@next/env@10.2.3":
   version "10.2.3"
