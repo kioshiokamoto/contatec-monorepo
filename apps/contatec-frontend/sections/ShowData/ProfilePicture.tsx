@@ -20,6 +20,7 @@ export default function ProfilePicture() {
             >
               <Circle
                 pos="absolute"
+                // @ts-ignore
                 w="45px"
                 h="45px"
                 bg="circleicons"
@@ -44,3 +45,4 @@ export default function ProfilePicture() {
     </div>
   )
 }
+

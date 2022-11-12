@@ -16,7 +16,9 @@ export default function CategoryTittle({ title }) {
             >
               {title}
             </Text>
+
             <Circle
+              // @ts-ignore
               w="45px"
               h="45px"
               bg="#fff"

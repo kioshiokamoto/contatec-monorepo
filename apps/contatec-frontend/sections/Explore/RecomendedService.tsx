@@ -12,6 +12,7 @@ export default function RecomendedService() {
         </Flex>
 
         <Grid
+          // @ts-ignore
           justify="space-evenly"
           templateColumns={{
             base: "repeat(1, 1fr)",
@@ -27,3 +28,4 @@ export default function RecomendedService() {
     </Box>
   )
 }
+
