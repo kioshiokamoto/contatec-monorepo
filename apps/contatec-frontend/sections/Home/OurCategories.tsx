@@ -14,6 +14,7 @@ export default function OurCategories() {
               </Text>
               <Grid templateColumns="repeat(2, 1fr)" gap={12}>
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="border" color="primary" />
                   </Circle>
@@ -22,6 +23,7 @@ export default function OurCategories() {
                   </Text>
                 </Flex>
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="border" color="primary" />
                   </Circle>
@@ -30,6 +32,7 @@ export default function OurCategories() {
                   </Text>
                 </Flex>
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="energy" color="primary" />
                   </Circle>
@@ -38,6 +41,7 @@ export default function OurCategories() {
                   </Text>
                 </Flex>
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="energy" color="primary" />
                   </Circle>
@@ -46,6 +50,7 @@ export default function OurCategories() {
                   </Text>
                 </Flex>
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="border" color="primary" />
                   </Circle>
@@ -54,6 +59,7 @@ export default function OurCategories() {
                   </Text>
                 </Flex>
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="border" color="primary" />
                   </Circle>
@@ -77,3 +83,4 @@ export default function OurCategories() {
     </div>
   )
 }
+

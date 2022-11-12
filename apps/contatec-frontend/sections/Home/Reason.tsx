@@ -37,6 +37,7 @@ export default function OurCategories() {
 
               <Grid templateColumns="repeat(1, 1fr)" gap={3}>
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="border" color="primary" />
                   </Circle>
@@ -47,6 +48,7 @@ export default function OurCategories() {
                 </Flex>
 
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="energy" color="primary" />
                   </Circle>
@@ -57,6 +59,7 @@ export default function OurCategories() {
                 </Flex>
 
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="border" color="primary" />
                   </Circle>
@@ -67,6 +70,7 @@ export default function OurCategories() {
                 </Flex>
 
                 <Flex align="center">
+                  {/* @ts-ignore */}
                   <Circle w="45px" h="45px" bg="circleicons">
                     <ZIcon name="energy" color="primary" />
                   </Circle>
@@ -83,3 +87,4 @@ export default function OurCategories() {
     </div>
   )
 }
+
