@@ -17,7 +17,6 @@ export class AppController {
   @ApiResponse({ status: 201, description: 'Se envio correo' })
   @ApiResponse({ status: 409, description: 'Ocurrio un conflicto' })
   register(@Body() dto: CreateUserDto) {
-    console.log('Se registra!');
     return this.appService.register(dto);
   }
 
