@@ -177,6 +177,7 @@ export default function QuotePrice({
                   value={description}
                   h="100"
                   maxLength={100}
+                  // @ts-ignore
                   resizable="false"
                 />
                 <Box
@@ -208,3 +209,4 @@ export default function QuotePrice({
     </>
   )
 }
+

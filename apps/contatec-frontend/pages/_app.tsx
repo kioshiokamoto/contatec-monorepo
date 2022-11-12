@@ -8,11 +8,13 @@ import type { AppProps } from "next/app"
 import { ChakraProvider } from "@chakra-ui/react"
 import { DataProvider } from "../store/GlobalState"
 import { newTheme } from "../styles/theme"
+import { ReactNode } from "react"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={newTheme}>
       <DataProvider>
+        {/* @ts-ignore */}
         <Component {...pageProps} />
       </DataProvider>
     </ChakraProvider>
@@ -20,3 +22,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp
+
