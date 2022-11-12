@@ -1,0 +1,1290 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Documentacion de proyecto Contatec",
+    "description": "Proyecto similar a workana / chambeala",
+    "version": "0.0.1",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "Authorization": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http",
+        "in": "header"
+      }
+    },
+    "schemas": {
+      "CreateUserDto": {
+        "type": "object",
+        "properties": {
+          "us_correo": {
+            "type": "string",
+            "description": "Dirección de correo electrónico",
+            "example": "johndoe@email.com"
+          },
+          "us_nombre": {
+            "type": "string",
+            "description": "Nombre de usuario",
+            "example": "Doe"
+          },
+          "us_apellido": {
+            "type": "string",
+            "description": "Apellido de usuario",
+            "example": "Doe"
+          },
+          "password": {
+            "type": "string",
+            "description": "Contraseña de usuario",
+            "example": "123456",
+            "minLength": 6
+          }
+        },
+        "required": [
+          "us_correo",
+          "us_nombre",
+          "us_apellido",
+          "password"
+        ]
+      },
+      "ActivateEmailDto": {
+        "type": "object",
+        "properties": {
+          "activation_token": {
+            "type": "string",
+            "description": "Token de activacion",
+            "example": "+NfexampleLs~_ej7qE+pfz}3+NfLs~_ej7qE+pfz}3+NfLs~_ej7qE+pfz}3"
+          }
+        },
+        "required": [
+          "activation_token"
+        ]
+      },
+      "ForgotPasswordDto": {
+        "type": "object",
+        "properties": {
+          "us_correo": {
+            "type": "string",
+            "description": "Dirección de correo electrónico",
+            "example": "johndoe@email.com"
+          }
+        },
+        "required": [
+          "us_correo"
+        ]
+      },
+      "ResetPasswordDto": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "description": "Contraseña de usuario",
+            "example": "123456",
+            "minLength": 6
+          }
+        },
+        "required": [
+          "password"
+        ]
+      },
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "us_correo": {
+            "type": "string",
+            "description": "Dirección de correo electrónico",
+            "example": "johndoe@email.com"
+          },
+          "password": {
+            "type": "string",
+            "description": "Contraseña de usuario",
+            "example": "123456",
+            "minLength": 6
+          }
+        },
+        "required": [
+          "us_correo",
+          "password"
+        ]
+      },
+      "GoogleLoginDto": {
+        "type": "object",
+        "properties": {
+          "tokenId": {
+            "type": "string",
+            "description": "Token de usuario",
+            "example": "+NfexampleLs~_ej7qE+pfz}3+NfLs~_ej7qE+pfz}3+NfLs~_ej7qE+pfz}3"
+          }
+        },
+        "required": [
+          "tokenId"
+        ]
+      },
+      "FacebookLoginDto": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "Token de usuario",
+            "example": "+NfexampleLs~_ej7qE+pfz}3+NfLs~_ej7qE+pfz}3+NfLs~_ej7qE+pfz}3"
+          },
+          "userID": {
+            "type": "string",
+            "description": "Id de usuario",
+            "example": "9842132161"
+          }
+        },
+        "required": [
+          "accessToken",
+          "userID"
+        ]
+      },
+      "UpdateUserDto": {
+        "type": "object",
+        "properties": {
+          "us_nombre": {
+            "type": "string",
+            "description": "Nombre de usuario",
+            "example": "Doe"
+          },
+          "us_apellido": {
+            "type": "string",
+            "description": "Apellido de usuario",
+            "example": "Doe"
+          },
+          "password": {
+            "type": "string",
+            "description": "Contraseña de usuario",
+            "example": "123456",
+            "minLength": 6
+          },
+          "avatar": {
+            "type": "string",
+            "description": "Enlace de imagen de usuario",
+            "example": "https://christiantola.me/assets/img/nest_logo.d11da205.svg"
+          }
+        }
+      },
+      "CreateReview": {
+        "type": "object",
+        "properties": {
+          "rw_score": {
+            "type": "number",
+            "description": "Calificacion de servicio (del uno al cinco)",
+            "example": 5
+          },
+          "rw_comentario": {
+            "type": "string",
+            "description": "Comentario de servicio",
+            "example": "Buen servicio"
+          },
+          "rw_idPost": {
+            "type": "number",
+            "description": "ID de post a calificar",
+            "example": 5
+          },
+          "rw_idTrabajo": {
+            "type": "number",
+            "description": "ID de trabajo a calificar",
+            "example": 5
+          }
+        },
+        "required": [
+          "rw_score",
+          "rw_idPost",
+          "rw_idTrabajo"
+        ]
+      },
+      "AcceptPropose": {
+        "type": "object",
+        "properties": {
+          "id_mensaje": {
+            "type": "number",
+            "description": "Id de mensaje",
+            "example": 1
+          }
+        },
+        "required": [
+          "id_mensaje"
+        ]
+      },
+      "UpdateWork": {
+        "type": "object",
+        "properties": {
+          "trb_cancelado": {
+            "type": "boolean",
+            "description": "Estado de pago",
+            "example": true,
+            "default": false
+          },
+          "trb_estado": {
+            "type": "string",
+            "description": "Estado de pago",
+            "example": "Contratado",
+            "enum": [
+              "Contratado",
+              "En proceso",
+              "Finalizado",
+              "Cancelado"
+            ]
+          },
+          "id_pago": {
+            "type": "number",
+            "description": "Id de pago",
+            "example": 1
+          }
+        }
+      },
+      "CrearPostDTO": {
+        "type": "object",
+        "properties": {
+          "pst_imagen_1": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_imagen_2": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_imagen_3": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_imagen_4": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_imagen_5": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_isActive": {
+            "type": "boolean",
+            "description": "Estado de post",
+            "example": true,
+            "default": true
+          },
+          "pst_descripcion": {
+            "type": "string",
+            "description": "Descripcion de servicio",
+            "example": "Arreglo computadoras en el cual se seguiran procesos estrictos"
+          },
+          "pst_descripcion_corta": {
+            "type": "string",
+            "description": "Descripcion corta de servicio",
+            "example": "Arreglo computadoras"
+          },
+          "pst_nombre": {
+            "type": "string",
+            "description": "Nombre de servicio",
+            "example": "Arreglo computadoras"
+          },
+          "pst_descripcion_incluye": {
+            "description": "Servicio incluye",
+            "example": [
+              "Revision",
+              "Mantenimiento",
+              "Garantia"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pst_categoria": {
+            "type": "number",
+            "description": "Descripcion de servicio",
+            "example": 1
+          },
+          "pst_precioBase": {
+            "type": "number",
+            "description": "Costo de servicio",
+            "example": 180
+          }
+        },
+        "required": [
+          "pst_imagen_1",
+          "pst_imagen_2",
+          "pst_imagen_3",
+          "pst_imagen_4",
+          "pst_imagen_5",
+          "pst_isActive",
+          "pst_descripcion",
+          "pst_descripcion_corta",
+          "pst_nombre",
+          "pst_descripcion_incluye",
+          "pst_categoria",
+          "pst_precioBase"
+        ]
+      },
+      "SearchPostDto": {
+        "type": "object",
+        "properties": {
+          "nombre_post": {
+            "type": "string",
+            "description": "Nombre de servicio a solicitar",
+            "example": "Arreglar computadoras"
+          },
+          "categoria_post": {
+            "type": "string",
+            "description": "Categoria que pertenece servicio",
+            "example": "Mantenimiento"
+          }
+        }
+      },
+      "UpdatePostDTO": {
+        "type": "object",
+        "properties": {
+          "pst_imagen_1": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_imagen_2": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_imagen_3": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_imagen_4": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_imagen_5": {
+            "type": "string",
+            "description": "Imagen de servicio",
+            "example": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+          },
+          "pst_isActive": {
+            "type": "boolean",
+            "description": "Estado de post",
+            "example": true,
+            "default": true
+          },
+          "pst_descripcion": {
+            "type": "string",
+            "description": "Descripcion de servicio",
+            "example": "Arreglo computadoras en el cual se seguiran procesos estrictos"
+          },
+          "pst_nombre": {
+            "type": "string",
+            "description": "Nombre de servicio",
+            "example": "Arreglo computadoras"
+          },
+          "pst_descripcion_corta": {
+            "type": "string",
+            "description": "Descripcion corta de servicio",
+            "example": "Arreglo computadoras"
+          },
+          "pst_descripcion_incluye": {
+            "description": "Servicio incluye",
+            "example": [
+              "Revision",
+              "Mantenimiento",
+              "Garantia"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pst_precioBase": {
+            "type": "number",
+            "description": "Costo de servicio",
+            "example": 180
+          },
+          "pst_categoria": {
+            "type": "number",
+            "description": "Descripcion de servicio",
+            "example": 1
+          }
+        },
+        "required": [
+          "pst_imagen_1",
+          "pst_imagen_2",
+          "pst_imagen_3",
+          "pst_imagen_4",
+          "pst_imagen_5",
+          "pst_isActive",
+          "pst_descripcion",
+          "pst_nombre",
+          "pst_descripcion_corta",
+          "pst_descripcion_incluye",
+          "pst_precioBase",
+          "pst_categoria"
+        ]
+      },
+      "PayServiceNow": {
+        "type": "object",
+        "properties": {
+          "pgo_nombre": {
+            "type": "string",
+            "description": "Nombre de usuario",
+            "example": "Doe"
+          },
+          "pgo_apellido": {
+            "type": "string",
+            "description": "Apellido de usuario",
+            "example": "Doe"
+          },
+          "pgo_correo": {
+            "type": "string",
+            "description": "Dirección de correo electrónico",
+            "example": "johndoe@email.com"
+          },
+          "pgo_monto": {
+            "type": "number",
+            "description": "Monto a pagar",
+            "example": 1000
+          },
+          "pgo_trabajoId": {
+            "type": "number",
+            "description": "Trabajo/Servicio a pagar",
+            "example": 51
+          },
+          "pgo_token_culqi": {
+            "type": "string",
+            "description": "Token culqi",
+            "example": "tkn_test_xxxxxxxxxxxxxxxx"
+          }
+        },
+        "required": [
+          "pgo_nombre",
+          "pgo_apellido",
+          "pgo_correo",
+          "pgo_monto",
+          "pgo_trabajoId",
+          "pgo_token_culqi"
+        ]
+      },
+      "CategoriaDTO": {
+        "type": "object",
+        "properties": {
+          "cat_nombre": {
+            "type": "string",
+            "description": "Tipo de oficio",
+            "example": "Electrónica"
+          },
+          "cat_descripcion": {
+            "type": "string",
+            "description": "Descripción de oficio",
+            "example": "Mantenimiento de cableado eléctrico"
+          }
+        },
+        "required": [
+          "cat_nombre",
+          "cat_descripcion"
+        ]
+      },
+      "CategoriaActualizarDTO": {
+        "type": "object",
+        "properties": {
+          "cat_nombre": {
+            "type": "string",
+            "description": "Tipo de oficio",
+            "example": "Electrónica"
+          },
+          "cat_descripcion": {
+            "type": "string",
+            "description": "Descripción de oficio",
+            "example": "Mantenimiento de cableado eléctrico"
+          }
+        },
+        "required": [
+          "cat_nombre",
+          "cat_descripcion"
+        ]
+      }
+    }
+  },
+  "paths": {
+    "/api/user/register": {
+      "post": {
+        "operationId": "UserController_register",
+        "summary": "Registrar usuario",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Se envio correo"
+          },
+          "409": {
+            "description": "Ocurrio un conflicto"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/user/activation": {
+      "post": {
+        "operationId": "UserController_activateEmail",
+        "summary": "Activacion de usuario",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivateEmailDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/user/forgot": {
+      "post": {
+        "operationId": "UserController_forgotPassword",
+        "summary": "Solicitar token de reseteo de contraseña",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/user/reset": {
+      "post": {
+        "operationId": "UserController_resetPassword",
+        "summary": "Cambiar contraseña de usuario",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "operationId": "UserController_login",
+        "summary": "Inicio de sesión",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/user/refresh_token": {
+      "post": {
+        "operationId": "UserController_getAccessToken",
+        "summary": "Obtener access token",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/user/google_login": {
+      "post": {
+        "operationId": "UserController_googleLogin",
+        "summary": "Iniciar sesión con google",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoogleLoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/user/facebook_login": {
+      "post": {
+        "operationId": "UserController_facebookLogin",
+        "summary": "Iniciar sesión con facebook",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FacebookLoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/user/logout": {
+      "get": {
+        "operationId": "UserController_logout",
+        "summary": "Cerrar sesión",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/api/user/info": {
+      "get": {
+        "operationId": "UserController_getUserInfo",
+        "summary": "Obtener información de usuario",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/user/info/{id}": {
+      "get": {
+        "operationId": "UserController_getUserInfoById",
+        "summary": "Obtener información de usuario por id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/user/update": {
+      "patch": {
+        "operationId": "UserController_updateUser",
+        "summary": "Actualizar información de usuario",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/review/create": {
+      "post": {
+        "operationId": "ReviewController_createReview",
+        "summary": "Crea review de un servicio",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReview"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Review"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/review/update": {
+      "post": {
+        "operationId": "ReviewController_updateReview",
+        "summary": "Actualiza review de un servicio",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReview"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Review"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/work/accept-propose": {
+      "post": {
+        "operationId": "WorkController_acceptPropose",
+        "summary": "Acepta propuesta de servicio",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AcceptPropose"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Se aceptó propuesta"
+          }
+        },
+        "tags": [
+          "Work"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/work/cancel/{id}": {
+      "patch": {
+        "operationId": "WorkController_cancelWork",
+        "summary": "Cancela propuesta de servicio",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Work"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/work/update-status/{id}": {
+      "patch": {
+        "operationId": "WorkController_updateStatus",
+        "summary": "Actualiza estado de negocio",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWork"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Work"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/post/create": {
+      "post": {
+        "operationId": "PostController_createPost",
+        "summary": "Crear post",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearPostDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/post/all-posts": {
+      "get": {
+        "operationId": "PostController_getAllPost",
+        "summary": "Obtener todos los posts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/api/post/explore-posts": {
+      "get": {
+        "operationId": "PostController_getExplorePosts",
+        "summary": "Explorar posts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/api/post/search": {
+      "post": {
+        "operationId": "PostController_searchPost",
+        "summary": "Buscador",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchPostDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/api/post/{id}": {
+      "get": {
+        "operationId": "PostController_getPost",
+        "summary": "Obtener post por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ]
+      }
+    },
+    "/api/post/update/{id}": {
+      "patch": {
+        "operationId": "PostController_updatePost",
+        "summary": "Actualizar post",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePostDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/post/delete/{id}": {
+      "delete": {
+        "operationId": "PostController_deletePost",
+        "summary": "Eliminar post",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Post"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/pay/service": {
+      "post": {
+        "operationId": "PayController_payServiceNow",
+        "summary": "Registrar pago",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PayServiceNow"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Pay"
+        ],
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/api/category/create": {
+      "post": {
+        "operationId": "CategoryController_createCategory",
+        "summary": "Creación de categoría",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Categoría"
+        ]
+      }
+    },
+    "/api/category/categories": {
+      "get": {
+        "operationId": "CategoryController_getAllCategories",
+        "summary": "Obtener todas las categorías",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Categoría"
+        ]
+      }
+    },
+    "/api/category/{id}": {
+      "get": {
+        "operationId": "CategoryController_getCategory",
+        "summary": "Obtener categoría por id",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Categoría"
+        ]
+      },
+      "patch": {
+        "operationId": "CategoryController_updateCategory",
+        "summary": "Actualizar categoría",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaActualizarDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Categoría"
+        ]
+      },
+      "delete": {
+        "operationId": "CategoryController_deleteCategory",
+        "summary": "Eliminar categoría",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Categoría"
+        ]
+      }
+    }
+  }
+}
