@@ -161,7 +161,6 @@ export class AppService {
       const user = await this.usuariosRepository.findOne({
         where: { id: req?.user.id },
       });
-
       if (!user) {
         throw new HttpException('Usuario no existe', HttpStatus.NOT_FOUND);
       }
@@ -199,7 +198,7 @@ export class AppService {
         { where: { id: req.user.id } },
         // { relations: ['posts', 'posts.pstCategoriaId'] }, // TODO: Must get info from another service
       );
-      const entityManager = getManager();
+      // const entityManager = getManager();
       // const data = await entityManager.query(
       //   `
       //     SELECT
@@ -290,7 +289,7 @@ export function setUserCookies(time: any, res: any, refresh_token: any) {
   res.cookie('refreshtoken', refresh_token, {
     httpOnly: true,
     maxAge: 7 * 24 * 60 * 60 * 1000,
-    path: '/api/user/refresh_token',
+    path: '/api/refresh_token',
     sameSite: 'none',
     secure: true,
   });
